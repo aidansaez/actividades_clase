@@ -14,7 +14,7 @@ public class act7_8 {
                     divisores++;
             if (divisores == 1) {   // si solo tengo un divisor es porque es primo.
                 c++;   // aumento el contador de números primos descubiertos.
-                System.out.println("Contador de números Primos: "+c+" | Número primo: " + i);
+                System.out.println("Contador de números Primos: " + c + " | Número primo: " + i);
             }
         }
     }
