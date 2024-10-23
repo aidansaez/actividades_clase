@@ -1,4 +1,4 @@
-package tema4;
+package tema4.actividad1;
 
 public class CalculadoraMain {
     public static void main(String[] args) {

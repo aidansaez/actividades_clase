@@ -1,4 +1,4 @@
-package tema4;
+package tema4.actividad1;
 
 public class Libro {
     private String titulo;
