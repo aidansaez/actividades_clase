@@ -8,32 +8,28 @@ public class LibroMain {
         libro.setTitulo("El Señor de los Anillos");
         libro.setAutor("J.R.R. Tolkien");
         libro.setNumPaginas(500);
-        libro.setPaginaActual(100); // Iniciamos en la página 100
+        libro.setEditorial("Santillana");
+
 
         // Mostrar información del libro
         System.out.println("Título: " + libro.getTitulo());
         System.out.println("Autor: " + libro.getAutor());
         System.out.println("Número total de páginas: " + libro.getNumPaginas());
-        System.out.println("Página actual: " + libro.getPaginaActual());
+        System.out.println("Editorial: " + libro.getEditorial());
 
-        // Avanzar 50 páginas
-        System.out.println("\nAvanzar 50 páginas...");
-        System.out.println(libro.avanzarPaginas(50));
+        // Libro by Autor
+        System.out.println("\nTitulo y autor: " + libro.getbookByAutor());
+        libro.setAutor("");
+        System.out.println("Titulo y autor: " + libro.getbookByAutor());
 
-        // Retroceder 30 páginas
-        System.out.println("\nRetroceder 30 páginas...");
-        System.out.println(libro.retrocederPaginas(30));
 
-        // Verificar si el libro está completamente leído
-        System.out.println("\n¿El libro está completamente leído?");
-        boolean leido = libro.marcarLeido();
-        if (leido) {
-            System.out.println("Sí, el libro está completamente leído.");
-        } else {
-            System.out.println("No, aún queda por leer.");
-        }
+        //Editorial es fiable o no?
+        System.out.println("Es fiable la editorial " + libro.getEditorial() + "? " + libro.getEsFiable());
+        libro.setEditorial("Almadraba");
+        System.out.println("Es fiable la editorial " + libro.getEditorial() + "? " + libro.getEsFiable());
 
         // Mostrar el porcentaje de lectura
-        System.out.println("\nPorcentaje de lectura actual: " + libro.getProcesoLectura() + "%");
+        System.out.println("Porcentaje de lectura actual: " + libro.getProcesoLectura(120) + "%");
+        System.out.println("Porcentaje de lectura actual: " + libro.getProcesoLectura(467) + "%");
     }
 }

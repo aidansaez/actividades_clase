@@ -4,7 +4,7 @@ public class Libro {
     private String titulo;
     private String autor;
     private int numPaginas;
-    private int paginaActual;
+    private String editorial;
 
     public String getTitulo() {
         return titulo;
@@ -30,33 +30,27 @@ public class Libro {
         this.numPaginas = numPaginas;
     }
 
-    public int getPaginaActual() {
-        return paginaActual;
+    public String getEditorial() {
+        return editorial;
     }
 
-    public void setPaginaActual(int paginaActual) {
-        this.paginaActual = paginaActual;
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
     }
 
-    public int avanzarPaginas(int paginas) {
-        if ((paginaActual + paginas) < numPaginas) {
-            return paginaActual += paginas;
-        } else return 0; //si se pasa devuelve 0
+    public String getbookByAutor() {
+        if (autor.isEmpty()) {
+            return titulo + " by Anon Writer";
+        } else return titulo + " by " + autor;
     }
 
-    public int retrocederPaginas(int paginas) {
-        if((paginaActual - paginas) >= 1) {
-            return paginaActual -= paginas;
-        } else return 0;
-    }
-
-    public boolean marcarLeido() {
-        if (paginaActual == numPaginas) {
+    public boolean getEsFiable() {
+        if (editorial.equalsIgnoreCase("santillana") || editorial.equalsIgnoreCase("anaya")) {
             return true;
         } else return false;
     }
 
-    public double getProcesoLectura () {
-        return ((double)paginaActual / numPaginas * 100);
+    public double getProcesoLectura (int paginas) {
+        return ((double)paginas / numPaginas * 100);
     }
 }
