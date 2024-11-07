@@ -18,6 +18,5 @@ public class act7_1_2_3 {
             }
             System.out.println( );
         }
-
     }
 }
