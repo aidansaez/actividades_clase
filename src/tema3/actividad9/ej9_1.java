@@ -10,7 +10,7 @@ public class ej9_1 {
     }
     public static boolean esCapicua(int num) {
         boolean esCapicua;
-        esCapicua = num == voltea(num);
+        esCapicua = num == voltea(num); // si le da la vuelta al numero y es igual es capicua
         return esCapicua;
     }
     public static boolean esPrimo(int num) {
@@ -43,8 +43,8 @@ public class ej9_1 {
     public static int digitos(int num) {
         int x = 0;
         while (Math.abs(num) > 0) {
-            num /= 10;
-            x++;
+            num /= 10; // quita el digito
+            x++; // contador
         }
         return x;
     }
@@ -56,9 +56,9 @@ public class ej9_1 {
         int digito;
 
         while (num > 0) {
-            digito = num % 10;
-            num = num/10;
-            volteado = volteado * 10 + digito;
+            digito = num % 10; //coge el primer digito
+            num = num/10; //lo quita del numero
+            volteado = volteado * 10 + digito; //lo añade a una nueva variable
         }
 
         return volteado;
@@ -91,15 +91,15 @@ public class ej9_1 {
     }
     public static int quitaPorDetras (int num, int veces) {
         for (int i = 1; i <= veces; i++) {
-            num /= 10;
+            num /= 10; // divide entre diez es decir quita digitos
         } return num;
     }
     public static int quitaPorDelante (int num, int veces) {
-        num = voltea(num);
+        num = voltea(num); //da la vuelta
         for (int i = 1; i <= veces; i++) {
-            num /= 10;
+            num /= 10; //quita digitos
         }
-        num = voltea(num);
+        num = voltea(num); //vuelve a darle la vuelta para que vuelva como estaba
         return num;
     }
     public static int pegaPorDetras (int num, int digito){
