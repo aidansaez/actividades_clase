@@ -1,4 +1,4 @@
-package tema4;
+package tema4.actividadAdicional;
 import java.util.Scanner;
 
 public class JuegoChinos {
