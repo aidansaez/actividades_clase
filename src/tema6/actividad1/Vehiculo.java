@@ -27,12 +27,14 @@ class Coche extends Vehiculo {
 
         String mover = "Estado del vehiculo con matricula " + matricula + ": ";
 
+
         while (num != 0) {
             if (num == 1) {
                 System.out.println(mover + "moviendose");
             } else if (num == 2) {
                 System.out.println(mover + "parado");
             }
+
             System.out.println();
 
             System.out.println("(1)Mover, (2)Parar, (0)Salir");
@@ -57,31 +59,32 @@ class Combustion extends Coche {
 
         String mover = "Marcha del vehiculo con matricula " + matricula + ": ";
 
+        System.out.println();
         while (num != 0) {
             switch (num) {
                 case 1:
                     this.marcha = 1;
-                    System.out.println(mover + marcha);
+                    System.out.println(mover + marcha + "ª");
                     break;
                 case 2:
                     this.marcha = 2;
-                    System.out.println(mover + marcha);
+                    System.out.println(mover + marcha + "ª");
                     break;
                 case 3:
                     this.marcha = 3;
-                    System.out.println(mover + marcha);
+                    System.out.println(mover + marcha + "ª");
                     break;
                 case 4:
                     this.marcha = 4;
-                    System.out.println(mover + marcha);
+                    System.out.println(mover + marcha + "ª");
                     break;
                 case 5:
                     this.marcha = 5;
-                    System.out.println(mover + marcha);
+                    System.out.println(mover + marcha + "ª");
                     break;
                 case 6:
                     this.marcha = 6;
-                    System.out.println(mover + marcha);
+                    System.out.println(mover + marcha + "ª");
             }
 
             System.out.println();
@@ -107,6 +110,7 @@ class Electrico extends Coche {
         String bateriasString = "Baterias del vehiculo con matricula " + matricula + ": ";
 
         while (num != 0) {
+            System.out.println();
             System.out.print("Cuantas baterías tiene? ");
             num = sc.nextInt();
             baterias = num;
