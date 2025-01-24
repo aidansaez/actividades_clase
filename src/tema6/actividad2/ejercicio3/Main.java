@@ -14,20 +14,20 @@ public class Main {
 
         // Test invalid toner addition (exceeds max)
         nuevoNivel = impresora.anadirToner(30);
-        System.out.println("Intento de añadir 30 más: " + nuevoNivel); // Expected: -1
+        System.out.println("Intento de añadir 30 más: " + nuevoNivel); // Expected: 100
 
         // Test invalid toner addition (out of range)
         nuevoNivel = impresora.anadirToner(0);
         System.out.println("Intento de añadir 0: " + nuevoNivel); // Expected: -1
 
         // Test updating number of pages
-        int paginasImprimir = 5;
+        int paginasImprimir = 6;
         int totalPaginas = impresora.actualizarNPaginas(paginasImprimir);
-        System.out.println("Total de páginas después de imprimir " + paginasImprimir + " páginas: " + totalPaginas); // Expected: 10
+        System.out.println("Total de páginas después de imprimir " + paginasImprimir + " caras: " + totalPaginas); // Expected: 3
 
         // Test single-sided printing
         Impresora impresoraSimple = new Impresora(false, 50, 0); // No doble cara
         totalPaginas = impresoraSimple.actualizarNPaginas(paginasImprimir);
-        System.out.println("Total de páginas después de imprimir " + paginasImprimir + " páginas en impresora simple: " + totalPaginas); // Expected: 5
+        System.out.println("Total de páginas después de imprimir " + paginasImprimir + " caras en impresora simple: " + totalPaginas); // Expected: 6
     }
 }

@@ -16,18 +16,18 @@ public class Impresora {
         if (tonerParaAnadir < 1 || tonerParaAnadir > 100) {
             return -1;
         } else if ((tonerParaAnadir + niveldeToner) > 100) {
-            return -1;
+            return niveldeToner = 100;
         } else {
             niveldeToner += tonerParaAnadir;
             return niveldeToner;
         }
     }
 
-    public int actualizarNPaginas(int paginasImprimir) {
+    public int actualizarNPaginas(int carasImprimir) {
         if (dobleCara) {
-            NPaginas += paginasImprimir * 2;
+            NPaginas += carasImprimir / 2;
         } else {
-            NPaginas += paginasImprimir;
+            NPaginas += carasImprimir;
         }
         return NPaginas;
     }
