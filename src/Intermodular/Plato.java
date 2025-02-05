@@ -7,22 +7,22 @@ public class Plato {
     private double precio;
     private String descripcion;
 
-    public Plato(String descripcion, String idplato, String nombre, double precio, String tipo) {
-        this.descripcion = descripcion;
+    public Plato(String idplato, String nombre, String tipo, double precio, String descripcion) {
         this.idplato = idplato;
         this.nombre = nombre;
-        this.precio = precio;
         this.tipo = tipo;
+        this.precio = precio;
+        this.descripcion = descripcion;
     }
 
     @Override
     public String toString() {
         return "Plato{" +
-                "descripcion='" + descripcion + '\'' +
-                ", idplato='" + idplato + '\'' +
+                "idplato='" + idplato + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", precio=" + precio +
+                ", descripcion='" + descripcion + '\'' +
                 '}';
     }
 
