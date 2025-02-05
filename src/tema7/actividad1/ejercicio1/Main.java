@@ -3,18 +3,53 @@ package tema7.actividad1.ejercicio1;
 import java.util.Scanner;
 
 public class Main {
-    private static Scanner sc = new Scanner(System.in);
-    private static TelefonoMovil telefonoMovil = new TelefonoMovil();
+    private static final Scanner sc = new Scanner(System.in);
+    private static final TelefonoMovil telefonoMovil = new TelefonoMovil();
+
+    private static boolean validarTlf(String tlf) {
+        if (tlf.isEmpty() || tlf.length() > 9) {
+            return false;
+        } else return tlf.matches("\\d+");
+    }
+
+    private static boolean validarNombre(String nombre) {
+        return !nombre.isEmpty() && nombre.matches("^[A-Za-z].*");
+    }
+
+    private static String pedirNombre() {
+        String nombre;
+        do {
+            System.out.print("Nombre: ");
+            nombre = sc.next();
+            if (!validarNombre(nombre)) {
+                System.out.println("⚠️ Error: El nombre debe comenzar con una letra");
+            }
+        } while (!validarNombre(nombre));
+
+        return nombre;
+    }
+
+    private static String pedirTlf() {
+        String tlf;
+        do {
+            System.out.print("Telefono: ");
+            tlf = sc.next();
+            if (!validarTlf(tlf)) {
+                System.out.println("⚠️ Error: El teléfono debe contener 9 numeros o menos");
+            }
+        } while (!validarTlf(tlf));
+
+        return tlf;
+    }
 
     private static void addNewContact() {
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Telefono: ");
-        String telefono = sc.nextLine();
+        String nombre = pedirNombre();
+        String telefono = pedirTlf();
+
         if (telefonoMovil.addNewContact(new Contacto(nombre, telefono))) {
-            System.out.println("Añadido con éxito");
+            System.out.println("✅ Añadido con éxito");
         } else {
-            System.out.println("Error, el contacto ya existe");
+            System.err.println("❌ Error, el contacto ya existe");
         }
     }
 
@@ -23,69 +58,67 @@ public class Main {
     }
 
     private static void updateContact() {
-        System.out.print("Nombre del Contacto Actual: ");
-        String nombreAnt = sc.nextLine();
-        System.out.print("Telefono Actual: ");
-        String telefonoAnt = sc.nextLine();
+        System.out.println("🔄 Actualizar Contacto");
+
+        System.out.println("\n📌 Introduce los datos actuales:");
+        String nombreAnt = pedirNombre();
+        String telefonoAnt = pedirTlf();
+
         Contacto antiguoContacto = new Contacto(nombreAnt, telefonoAnt);
 
-        System.out.print("Nombre del Contacto Actualizado: ");
-        String nombreNew = sc.nextLine();
-        System.out.print("Telefono Actualizado: ");
-        String tlfActualizado = sc.nextLine();
-        Contacto nuevoContacto = new Contacto(nombreNew, tlfActualizado);
+        System.out.println("\n✏️ Introduce los datos nuevos:");
+        String nombreNew = pedirNombre();
+        String telefonoNew = pedirTlf();
+
+        Contacto nuevoContacto = new Contacto(nombreNew, telefonoNew);
 
         if (telefonoMovil.updateContact(antiguoContacto, nuevoContacto)) {
-            System.out.println("Actualización realizada con éxito");
+            System.out.println("✅ Actualización realizada con éxito.");
         } else {
-            System.out.println("Error, el contacto no existe");
+            System.err.println("❌ Error, el contacto no existe.");
         }
     }
 
     private static void removeContact() {
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Telefono: ");
-        String telefono = sc.nextLine();
+        String nombre = pedirNombre();
+        String telefono = pedirTlf();
+
         if (telefonoMovil.removeContact(new Contacto(nombre, telefono))) {
-            System.out.println("Contacto eliminado con éxito");
+            System.out.println("✅ Contacto eliminado con éxito");
         } else {
-            System.out.println("Error, el contacto no existe");
+            System.err.println("❌ Error, el contacto no existe");
         }
     }
 
     private static void findContactName() {
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
+        String nombre = pedirNombre();
         int index = telefonoMovil.findContactPorNombre(nombre);
         if (index != -1) {
-            System.out.println("Contacto encontrado en la posición: " + index);
+            System.out.println("✅ Contacto encontrado en la posición: " + index);
         } else {
-            System.out.println("Contacto no encontrado");
+            System.err.println("❌ Contacto no encontrado");
         }
     }
 
     private static void findContactTlf() {
-        System.out.print("Tlf: ");
-        String tlf = sc.nextLine();
+        String tlf = pedirTlf();
         int index = telefonoMovil.findContactPorTlf(tlf);
         if (index != -1) {
-            System.out.println("Contacto encontrado en la posición: " + index);
+            System.out.println("✅ Contacto encontrado en la posición: " + index);
         } else {
-            System.out.println("Contacto no encontrado");
+            System.out.println("❌ Contacto no encontrado");
         }
     }
 
     private static void findContactClaves() {
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Telefono: ");
-        String telefono = sc.nextLine();
+        String nombre = pedirNombre();
+        String telefono = pedirTlf();
+
         int index = telefonoMovil.findContactPorClaves(new Contacto(nombre, telefono));
         if (index != -1) {
-            System.out.println("Contacto encontrado en la posición: " + index);
+            System.out.println("✅ Contacto encontrado en la posición: " + index);
         } else {
-            System.out.println("Contacto no encontrado");
+            System.out.println("❌ Contacto no encontrado");
         }
     }
 
@@ -107,13 +140,13 @@ public class Main {
 
     public static void main(String[] args) {
         boolean continuar = true;
-        int opcion = 0;
+        int opcion;
         imprimirMenu();
 
         while (continuar) {
             System.out.print("Elige una opción: ");
             opcion = sc.nextInt();
-            sc.nextLine(); // Limpiar el buffer
+
 
             switch (opcion) {
                 case 0:

@@ -40,7 +40,7 @@ public class TelefonoMovil {
         } else return false;
     }
 
-    public int findContactPorNombre(Contacto contacto) {
+    public int findContact(Contacto contacto) {
         if (myContacts.contains(contacto)) {
             return myContacts.indexOf(contacto);
         } else return -1;
@@ -49,7 +49,7 @@ public class TelefonoMovil {
     public int findContactPorNombre(String nombre) {
         for (int i = 0; i < myContacts.size(); i++) {
             Contacto contacto = myContacts.get(i);
-            if (contacto.nombre.equals(nombre)){
+            if (contacto.nombre.equalsIgnoreCase(nombre)){
                 return myContacts.indexOf(contacto);
             }
         }
@@ -96,6 +96,7 @@ public class TelefonoMovil {
 
     public void ordenar() {
         Collections.sort(myContacts);
+
     }
 
     public void borrarTodo() {

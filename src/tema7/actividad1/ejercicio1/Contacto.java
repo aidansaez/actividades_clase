@@ -1,8 +1,6 @@
 package tema7.actividad1.ejercicio1;
 
-import java.util.Comparator;
 import java.util.Objects;
-import java.util.Optional;
 
 public class Contacto implements Comparable<Contacto> {
     protected String nombre;
