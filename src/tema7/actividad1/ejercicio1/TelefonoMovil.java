@@ -53,7 +53,6 @@ public class TelefonoMovil {
                 return myContacts.indexOf(contacto);
             }
         }
-
         return -1;
     }
 
