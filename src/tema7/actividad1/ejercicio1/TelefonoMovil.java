@@ -96,7 +96,6 @@ public class TelefonoMovil {
 
     public void ordenar() {
         Collections.sort(myContacts);
-
     }
 
     public void borrarTodo() {
@@ -106,11 +105,11 @@ public class TelefonoMovil {
         System.out.println("Borrado correctamente");
     }
 
-    public void numeroContactos() {
+    public void contarContactos() {
         int num = 0;
         for (int i = 0; i < myContacts.size(); i++) {
             num++;
         }
-        System.out.println("Hay " + num + " contactos");
+        System.out.println("Hay " + num + " contactos 👤");
     }
 }

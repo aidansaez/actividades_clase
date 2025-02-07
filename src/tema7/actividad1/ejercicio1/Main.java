@@ -43,9 +43,9 @@ public class Main {
     }
 
     private static void addNewContact() {
+        System.out.println("-- ➕ Añadir Contacto --");
         String nombre = pedirNombre();
         String telefono = pedirTlf();
-
         if (telefonoMovil.addNewContact(new Contacto(nombre, telefono))) {
             System.out.println("✅ Añadido con éxito");
         } else {
@@ -54,11 +54,12 @@ public class Main {
     }
 
     private static void printContacts() {
+        System.out.println("-- \uD83D\uDC65 Contactos --");
         telefonoMovil.printContactos();
     }
 
     private static void updateContact() {
-        System.out.println("🔄 Actualizar Contacto");
+        System.out.println("-- 🔄 Actualizar Contacto --");
 
         System.out.println("\n📌 Introduce los datos actuales:");
         String nombreAnt = pedirNombre();
@@ -80,8 +81,11 @@ public class Main {
     }
 
     private static void removeContact() {
+        System.out.println("-- 🗑️ Borrar contacto --");
+
         String nombre = pedirNombre();
         String telefono = pedirTlf();
+
 
         if (telefonoMovil.removeContact(new Contacto(nombre, telefono))) {
             System.out.println("✅ Contacto eliminado con éxito");
@@ -91,6 +95,8 @@ public class Main {
     }
 
     private static void findContactName() {
+        System.out.println("-- 🔍 Encontrar contacto (nombre) --");
+
         String nombre = pedirNombre();
         int index = telefonoMovil.findContactPorNombre(nombre);
         if (index != -1) {
@@ -101,6 +107,8 @@ public class Main {
     }
 
     private static void findContactTlf() {
+        System.out.println("-- 🔍 Encontrar contacto (tlf) --");
+
         String tlf = pedirTlf();
         int index = telefonoMovil.findContactPorTlf(tlf);
         if (index != -1) {
@@ -111,6 +119,8 @@ public class Main {
     }
 
     private static void findContactClaves() {
+        System.out.println("-- 🔍 Encontrar contacto (clave) --");
+
         String nombre = pedirNombre();
         String telefono = pedirTlf();
 
@@ -124,18 +134,18 @@ public class Main {
 
     private static void imprimirMenu() {
         System.out.println("""
-                0. Salir
-                1. Imprimir Contactos
-                2. Agregar Contacto
-                3. Actualizar Contacto
-                4. Eliminar Contacto
-                5. Buscar/Encontrar Contacto por Nombre
-                6. Imprimir Opciones
-                7. Buscar/Encontrar Contacto por Tlf
-                8. Ordenar
-                9. Borrar Todo
-                10. Contar Contactos
-                11. Buscar/Encontrar Contacto por Claves""");
+            0. Salir ❌
+            1. Imprimir Contactos 📇
+            2. Agregar Contacto ➕👤
+            3. Actualizar Contacto ✏️👤
+            4. Eliminar Contacto 🗑️👤
+            5. Buscar/Encontrar Contacto por Nombre 🔍👤
+            6. Imprimir Opciones ⚙️
+            7. Buscar/Encontrar Contacto por Tlf 📞🔍
+            8. Ordenar 📂
+            9. Borrar Todo 🗑️
+            10. Contar Contactos 🔢👥
+            11. Buscar/Encontrar Contacto por Claves 🔑🔍""");
     }
 
     public static void main(String[] args) {
@@ -173,13 +183,14 @@ public class Main {
                 case 7:
                     findContactTlf();
                 case 8:
+                    System.out.println("Ordenando contactos...");
                     telefonoMovil.ordenar();
                     break;
                 case 9:
                     telefonoMovil.borrarTodo();
                     break;
                 case 10:
-                    telefonoMovil.numeroContactos();
+                    telefonoMovil.contarContactos();
                     break;
                 case 11:
                     findContactClaves();
