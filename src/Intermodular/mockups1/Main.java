@@ -1,4 +1,4 @@
-package Intermodular;
+package Intermodular.mockups1;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

@@ -6,6 +6,9 @@ public class Contacto implements Comparable<Contacto> {
     protected String nombre;
     protected String phoneNumber;
 
+    public Contacto() {
+    }
+
     public Contacto(String nombre) {
         this.nombre = nombre;
     }

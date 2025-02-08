@@ -119,17 +119,12 @@ public class Main {
     }
 
     private static void findContactClaves() {
-        System.out.println("-- 🔍 Encontrar contacto (clave) --");
+        System.out.println("-- 🔍 Encontrar contacto (claves) --");
 
-        String nombre = pedirNombre();
-        String telefono = pedirTlf();
-
-        int index = telefonoMovil.findContactPorClaves(new Contacto(nombre, telefono));
-        if (index != -1) {
-            System.out.println("✅ Contacto encontrado en la posición: " + index);
-        } else {
-            System.out.println("❌ Contacto no encontrado");
-        }
+        System.out.print("Por que lo quieres buscar ((N)ombre/(T)elefono)? ");
+        if (sc.next().equalsIgnoreCase("n")) {
+            findContactName();
+        } else findContactTlf();
     }
 
     private static void imprimirMenu() {

@@ -1,4 +1,4 @@
-package Intermodular;
+package Intermodular.mockups1;
 
 public class Plato {
     private String idplato;

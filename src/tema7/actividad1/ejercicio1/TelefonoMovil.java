@@ -67,18 +67,15 @@ public class TelefonoMovil {
         return -1;
     }
 
-    public int findContactPorClaves(Contacto contacto) {
-        if (myContacts.contains(contacto)) {
-            return myContacts.indexOf(contacto);
+    public Contacto queryContact(String nombre) {
+        for (int i = 0; i < myContacts.size(); i++) {
+            Contacto contacto = myContacts.get(i);
+            if (contacto.nombre.equalsIgnoreCase(nombre)) {
+                return contacto;
+            }
         }
 
-        return -1;
-    }
-
-    public Contacto queryContact(String nombre) {
-        if (myContacts.contains(new Contacto(nombre))) {
-            return myContacts.get(myContacts.indexOf(new Contacto(nombre)));
-        } else return null;
+        return new Contacto();
     }
 
     public void printContactos() {
