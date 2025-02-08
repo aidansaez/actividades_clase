@@ -32,7 +32,7 @@ public class Contacto implements Comparable<Contacto> {
 
     @Override
     public String toString() {
-        return "Contacto{" +
+        return "Contacto{"+
                 "nombre='" + nombre + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
