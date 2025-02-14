@@ -223,7 +223,7 @@ public class Main {
 
         if (opc == 1) {
             idplato = pedirIDPlato();
-            System.out.println("El idplato: " + idplato + " esta en la poscion " + findPlatoIDPlato(idplato));
+            System.out.println("El idplato: " + idplato + " esta en la posición " + findPlatoIDPlato(idplato));
         } else {
             do {
                 idplato = pedirIDPlato();
@@ -254,10 +254,13 @@ public class Main {
 
     private static void printPlatos() {
         System.out.println("-- 🍽️ Platos --");
-        for (int i = 0; i < platos.size(); i++) {
-            Plato plato = platos.get(i);
-            System.out.println(i + ". - " + plato);
-        }
+        if (!platos.isEmpty())  {
+            for (int i = 0; i < platos.size(); i++) {
+                Plato plato = platos.get(i);
+                System.out.println(i + ". - " + plato);
+            }
+        } else System.out.println("No hay platos.");
+
     }
 
     private static void printMenu() {
