@@ -1,4 +1,4 @@
-package tema7.actividad1.ejercicio1;
+package tema7.actividad1;
 
 import java.util.Objects;
 
