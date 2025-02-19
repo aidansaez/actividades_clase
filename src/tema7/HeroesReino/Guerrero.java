@@ -19,6 +19,6 @@ public class Guerrero extends Heroe {
                 "\n-nivel: " + nivel +
                 "\n-vida: " + vida +
                 "\n-fuerza: " + fuerza +
-                "\n-arma: " + arma.nombreArma + " (Daño: " + arma.damage + ")";
+                "\n-arma: " + (arma != null ? arma.nombreArma + "(Daño: " + arma.damage + ")" : "A puños");
     }
 }

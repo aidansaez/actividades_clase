@@ -19,6 +19,6 @@ public class Mago  extends Heroe{
                 "\n-nivel: " + nivel +
                 "\n-vida: " + vida +
                 "\n-mana: " + mana +
-                "\n-arma: " + arma.nombreArma + " (Daño: " + arma.damage + ")";
+                "\n-arma: " + (arma != null ? arma.nombreArma + "(Daño: " + arma.damage + ")" : "A puños");
     }
 }
