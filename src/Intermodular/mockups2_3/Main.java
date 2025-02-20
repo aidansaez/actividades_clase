@@ -311,6 +311,8 @@ public class Main {
                     break;
                 case 6:
                     seguir = false;
+                default:
+                    System.out.println("Error, opción no válida");
             }
             System.out.println();
         } while (seguir);
