@@ -1,9 +1,29 @@
 package tema7.HeroesReino;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner sc = new Scanner(System.in);
+    public static int pedirNum(String text) {
+        boolean continuar = false;
+        int num = 0;
+        do {
+            try {
+                System.out.print(text + ": ");
+                num = sc.nextInt();
+                if (num < 0) {
+                    System.out.println("El nivel no puede ser negativo");
+                } else continuar = true;
+            } catch (InputMismatchException nonum) {
+                System.out.println("Introduce un valor numerico porfa");
+                continuar = false;
+                sc.nextLine(); //buffer
+            }
+        } while (!continuar);
+
+        return num;
+    }
     public static void addHeroe(ArrayList<Heroe> heroes, ArrayList<Arma> armas) {
         int opcMenu;
         System.out.println("\n-- ➕ Añadir Heroe --");
@@ -22,34 +42,44 @@ public class Main {
         sc.nextLine(); // Limpiar Buffer
         System.out.print("Nombre del Guerrero: ");
         String nombre = sc.nextLine();
-        System.out.print("Nivel: ");
-        int nivel = sc.nextInt();
-        System.out.print("Vida: ");
-        int vida = sc.nextInt();
+        int nivel = pedirNum("Nivel");
+        int vida = pedirNum("Vida");
         Arma arma = null;
+        sc.nextLine(); // limpiar buffer
+
+        if (armas.isEmpty()) {
+            String decision;
+            do {
+                System.out.print("No hay armas en el arsenal\nDeseas añadir una (S/n)? ");
+                decision = sc.nextLine();
+                if (!decision.equalsIgnoreCase("s") && !decision.equalsIgnoreCase("n")) {
+                    System.out.println("Error, ese caracter no es válido.");
+                }
+            } while (!decision.equalsIgnoreCase("s") && !decision.equalsIgnoreCase("n"));
+
+            if (decision.equalsIgnoreCase("s")) {
+                addArma(armas);
+            }
+        }
 
         switch (opcMenu) {
             case 1:
-                System.out.print("Fuerza: ");
-                int fuerza = sc.nextInt();
+                int fuerza = pedirNum("Fuerza");
                 arma = elegirArma(armas);
                 heroes.add(new Guerrero(nombre, nivel, vida, arma, fuerza));
                 break;
             case 2:
-                System.out.print("Maná: ");
-                int mana = sc.nextInt();
+                int mana = pedirNum("Mana");
                 arma = elegirArma(armas);
                 heroes.add(new Mago(nombre, nivel, vida, arma, mana));
                 break;
             case 3:
-                System.out.print("Precision: ");
-                int precision = sc.nextInt();
+                int precision = pedirNum("Precision");
                 arma = elegirArma(armas);
                 heroes.add(new Arquero(nombre, nivel, vida, arma, precision));
                 break;
             case 4:
-                System.out.print("Sigilo: ");
-                int sigilo = sc.nextInt();
+                int sigilo = pedirNum("Sigilo");
                 arma = elegirArma(armas);
                 heroes.add(new Asesino(nombre, nivel, vida, arma, sigilo));
                 break;
@@ -65,7 +95,6 @@ public class Main {
     }
     public static void addArma(ArrayList<Arma> armas) {
         System.out.println("\n-- ➕ Añadir Arma --");
-        sc.nextLine(); // limpiar buffer
         System.out.print("Nombre de la nueva arma: ");
         String nombreArma = sc.nextLine();
         System.out.print("Daño que inflingirá: ");
@@ -77,7 +106,6 @@ public class Main {
     }
     public static void removeHeroe(ArrayList<Heroe> heroes) {
         System.out.println("\n-- 🗑️ Eliminar heroe --");
-        sc.nextLine();
         System.out.print("Nombre del heroe a eliminar: ");
         String nombreHeroeEliminar = sc.nextLine();
 
@@ -93,7 +121,6 @@ public class Main {
     }
     public static void buscarHeroe(ArrayList<Heroe> heroes) {
         System.out.println("\n-- 🔍 Buscar heroe --");
-        sc.nextLine();
         System.out.print("Nombre del heroe a buscar: ");
         String nombreHeroeEliminar = sc.nextLine();
 
@@ -111,10 +138,9 @@ public class Main {
             do {
                 System.out.println("Armas: ");
                 printArmas(armas);
-                System.out.print("Elige un arma: ");
-                opc = sc.nextInt();
-            } while (opc < armas.size() || opc > armas.size());
-            return armas.get(opc);
+                opc = pedirNum("Elige un arma");
+            } while (opc < 1 || opc > armas.size());
+            return armas.get(opc - 1);
         } else {
             System.out.println("El heroe irá a puños");
             return null;
@@ -127,20 +153,27 @@ public class Main {
                 2. Añadir Arma
                 3. Eliminar Héroe
                 4. Buscar Héroe
-                5. Listar Héroes""");
+                5. Listar Héroes
+                6. Listar Armas
+                7. Listar Menu""");
     }
     public static void printArmas(ArrayList<Arma> armas) {
         if (!armas.isEmpty()) {
             for (int i = 0; i < armas.size(); i++) {
-                System.out.println(i + ". " + armas.get(i).nombreArma + " (Daño: " + armas.get(i).damage + ")");
+                System.out.println((i + 1) + ". " + armas.get(i).nombreArma + " (Daño: " + armas.get(i).damage + ")");
             }
         } else System.out.println("No hay armas en el arsenal");
         System.out.println();
     }
     public static void printHeroes(ArrayList<Heroe> heroes) {
-        for (int i = 0; i < heroes.size(); i++) {
-            System.out.println(i + ". " + heroes.get(i));
-        }
+        if (!heroes.isEmpty()) {
+            System.out.println("---------------------------");
+            for (int i = 0; i < heroes.size(); i++) {
+                System.out.println((i + 1) + ". " + heroes.get(i));
+                System.out.println();
+            }
+            System.out.println("---------------------------");
+        } else System.out.println("No hay heroes en el gremio");
         System.out.println();
     }
 
@@ -178,6 +211,9 @@ public class Main {
                     break;
                 case 6:
                     printArmas(armas);
+                    break;
+                case 7:
+                    printMenu();
                     break;
                 default:
                     System.out.println("Error, esa opcion no existe");
