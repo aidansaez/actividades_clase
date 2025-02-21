@@ -8,4 +8,9 @@ public class Arma {
         this.damage = damage;
         this.nombreArma = nombreArma;
     }
+
+    @Override
+    public String toString() {
+        return nombreArma + "(Daño :" + damage + ")";
+    }
 }

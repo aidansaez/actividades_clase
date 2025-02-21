@@ -1,10 +1,12 @@
 package tema7.HeroesReino;
 
+import java.util.ArrayList;
+
 public class Arquero extends Heroe {
     protected int precision;
 
-    public Arquero(String nombreHeroe, int nivel, int vida, Arma arma, int precision) {
-        super(nombreHeroe, nivel, vida, arma);
+    public Arquero(String nombreHeroe, int nivel, int vida, ArrayList<Arma> armas, int precision) {
+        super(nombreHeroe, nivel, vida, armas);
         this.precision = precision;
     }
 
@@ -18,7 +20,6 @@ public class Arquero extends Heroe {
                 "\n-nombreHeroe: " + nombreHeroe +
                 "\n-nivel: " + nivel +
                 "\n-vida: " + vida +
-                "\n-precision: " + precision +
-                "\n-arma: " + (arma != null ? arma.nombreArma + "(Daño: " + arma.damage + ")" : "A puños");
+                "\n-precision: " + precision;
     }
 }

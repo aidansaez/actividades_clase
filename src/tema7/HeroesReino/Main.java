@@ -34,7 +34,7 @@ public class Main {
         }
         return false;
     }
-    public static void addHeroe(ArrayList<Heroe> heroes, ArrayList<Arma> armas) {
+    public static void addHeroe(ArrayList<Heroe> heroes, ArrayList<Arma> armasArsenal) {
         int opcMenu;
         System.out.println("\n-- ➕ Añadir Heroe --");
 
@@ -45,9 +45,8 @@ public class Main {
                        2. Mago
                        3. Arquero
                        4. Asesino""");
-            System.out.print("Elige una opción: ");
-            opcMenu = sc.nextInt();
-        } while (opcMenu < 1 || opcMenu > 4);
+            opcMenu = pedirNum("Elige una opción");
+        } while (opcMenu > 4);
 
         sc.nextLine(); // Limpiar Buffer
         String nombre;
@@ -58,13 +57,12 @@ public class Main {
 
         int nivel = pedirNum("Nivel");
         int vida = pedirNum("Vida");
-        Arma arma = null;
         sc.nextLine(); // limpiar buffer
 
-        if (armas.isEmpty()) {
+        if (armasArsenal.isEmpty()) {
             String decision;
             do {
-                System.out.print("No hay armas en el arsenal\nDeseas añadir una (S/n)? ");
+                System.out.print("No hay armasArsenal en el arsenal\nDeseas añadir una (S/n)? ");
                 decision = sc.nextLine();
                 if (!decision.equalsIgnoreCase("s") && !decision.equalsIgnoreCase("n")) {
                     System.out.println("Error, ese caracter no es válido.");
@@ -72,37 +70,39 @@ public class Main {
             } while (!decision.equalsIgnoreCase("s") && !decision.equalsIgnoreCase("n"));
 
             if (decision.equalsIgnoreCase("s")) {
-                addArma(armas);
+                addArma(armasArsenal);
             }
         }
+        
+        ArrayList<Arma> armasHeroe = null;
 
         switch (opcMenu) {
             case 1:
                 int fuerza = pedirNum("Fuerza");
-                arma = elegirArma(armas);
-                heroes.add(new Guerrero(nombre, nivel, vida, arma, fuerza));
+                armasHeroe = elegirArma(armasArsenal);
+                heroes.add(new Guerrero(nombre, nivel, vida, armasHeroe, fuerza));
                 break;
             case 2:
                 int mana = pedirNum("Mana");
-                arma = elegirArma(armas);
-                heroes.add(new Mago(nombre, nivel, vida, arma, mana));
+                armasHeroe = elegirArma(armasArsenal);
+                heroes.add(new Mago(nombre, nivel, vida, armasHeroe, mana));
                 break;
             case 3:
                 int precision = pedirNum("Precision");
-                arma = elegirArma(armas);
-                heroes.add(new Arquero(nombre, nivel, vida, arma, precision));
+                armasHeroe = elegirArma(armasArsenal);
+                heroes.add(new Arquero(nombre, nivel, vida, armasHeroe, precision));
                 break;
             case 4:
                 int sigilo = pedirNum("Sigilo");
-                arma = elegirArma(armas);
-                heroes.add(new Asesino(nombre, nivel, vida, arma, sigilo));
+                armasHeroe = elegirArma(armasArsenal);
+                heroes.add(new Asesino(nombre, nivel, vida, armasHeroe, sigilo));
                 break;
             default:
                 System.out.println("Error");
         }
 
-        if (arma != null) {
-            System.out.println(nombre + " ha sido añadido al gremio con su " + arma.nombreArma + "!");
+        if (armasHeroe != null) {
+            System.out.println(nombre + " ha sido añadido al gremio");
         } else System.out.println(nombre + " ha sido añadido al gremio sin arma!");
 
         System.out.println("---------------------\n");
@@ -111,8 +111,7 @@ public class Main {
         System.out.println("\n-- ➕ Añadir Arma --");
         System.out.print("Nombre de la nueva arma: ");
         String nombreArma = sc.nextLine();
-        System.out.print("Daño que inflingirá: ");
-        int damage = sc.nextInt();
+        int damage = pedirNum("Daño que inflingirá");
 
         armas.add(new Arma(damage, nombreArma));
         System.out.println(nombreArma + " ha sido añadida al arsenal");
@@ -143,18 +142,36 @@ public class Main {
             if (heroe.nombreHeroe.equalsIgnoreCase(nombreHeroeEliminar)) {
                 System.out.println("-- Información del heroe --");
                 System.out.println(heroe);
+                System.out.println("Armas: ");
+                for (int j = 0; j < heroe.armas.size(); j++) {
+                    System.out.println(heroe.armas.get(j));
+                }
             }
         }
     }
-    public static Arma elegirArma(ArrayList<Arma> armas) {
-        if (!armas.isEmpty()) {
+    public static ArrayList<Arma> elegirArma(ArrayList<Arma> armasArsenal) {
+        if (!armasArsenal.isEmpty()) {
+            ArrayList<Arma> armasHeroe = new ArrayList<>();
             int opc;
+            String quieresOtroArma;
             do {
-                System.out.println("Armas: ");
-                printArmas(armas);
-                opc = pedirNum("Elige un arma");
-            } while (opc < 1 || opc > armas.size());
-            return armas.get(opc - 1);
+                do {
+                    System.out.println("Armas: ");
+                    printArmas(armasArsenal);
+                    opc = pedirNum("Elige un arma");
+                } while (opc < 1 || opc > armasArsenal.size());
+                armasHeroe.add(armasArsenal.get(opc - 1));
+
+                sc.nextLine();
+                
+                do {
+                    System.out.print("Quieres añadir otro arma (S/n)? ");
+                    quieresOtroArma = sc.nextLine();
+                } while (!quieresOtroArma.equalsIgnoreCase("s") && !quieresOtroArma.equalsIgnoreCase("n"));
+                
+            } while (quieresOtroArma.equalsIgnoreCase("s"));
+            
+            return armasHeroe;
         } else {
             System.out.println("El heroe irá a puños");
             return null;
@@ -193,7 +210,7 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Heroe> heroes = new ArrayList<>();
-        ArrayList<Arma> armas = new ArrayList<>();
+        ArrayList<Arma> armasArsenal = new ArrayList<>();
 
         System.out.println("Bienvenido a Héroes 1J");
         printMenu();
@@ -202,17 +219,17 @@ public class Main {
         do {
             System.out.print("Elige una opción: ");
             int opc = sc.nextInt();
-
+            sc.nextLine(); // buffer
 
             switch (opc) {
                 case 0:
                     seguir = false;
                     break;
                 case 1:
-                    addHeroe(heroes, armas);
+                    addHeroe(heroes, armasArsenal);
                     break;
                 case 2:
-                    addArma(armas);
+                    addArma(armasArsenal);
                     break;
                 case 3:
                     removeHeroe(heroes);
@@ -224,7 +241,7 @@ public class Main {
                     printHeroes(heroes);
                     break;
                 case 6:
-                    printArmas(armas);
+                    printArmas(armasArsenal);
                     break;
                 case 7:
                     printMenu();
