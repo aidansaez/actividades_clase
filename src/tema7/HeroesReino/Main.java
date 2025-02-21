@@ -24,6 +24,16 @@ public class Main {
 
         return num;
     }
+    public static boolean heroeYaAgregado(ArrayList<Heroe> heroes, String nombre) {
+        for (int i = 0; i < heroes.size(); i++) {
+            Heroe heroe = heroes.get(i);
+            if (heroe.nombreHeroe.equalsIgnoreCase(nombre)){
+                System.out.println("Error, ese nombre ya esta ocupado");
+                return true;
+            }
+        }
+        return false;
+    }
     public static void addHeroe(ArrayList<Heroe> heroes, ArrayList<Arma> armas) {
         int opcMenu;
         System.out.println("\n-- ➕ Añadir Heroe --");
@@ -40,8 +50,12 @@ public class Main {
         } while (opcMenu < 1 || opcMenu > 4);
 
         sc.nextLine(); // Limpiar Buffer
-        System.out.print("Nombre del Guerrero: ");
-        String nombre = sc.nextLine();
+        String nombre;
+        do {
+            System.out.print("Nombre del Guerrero: ");
+            nombre = sc.nextLine();
+        } while (heroeYaAgregado(heroes, nombre));
+
         int nivel = pedirNum("Nivel");
         int vida = pedirNum("Vida");
         Arma arma = null;
