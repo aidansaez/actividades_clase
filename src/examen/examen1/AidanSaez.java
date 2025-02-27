@@ -1,4 +1,4 @@
-package tema3.examen;
+package examen.examen1;
 
 import java.util.Scanner;
 
