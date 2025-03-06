@@ -1,4 +1,4 @@
-package tema7;
+package examen;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
