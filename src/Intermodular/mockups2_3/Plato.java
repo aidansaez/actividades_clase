@@ -79,4 +79,15 @@ public class Plato {
     public int hashCode() {
         return Objects.hash(idplato, nombre, tipo, precio, descripcion);
     }
+
+    public String toXML() {
+        return
+                "   <plato>\n" +
+                "       <idplato>" + idplato + "</idplato>\n" +
+                "       <nombre>"+nombre+"</nombre>\n" +
+                "       <tipo>"+tipo+"</tipo>\n" +
+                "       <precio>"+precio+"</precio>\n" +
+                "       <descripcion>"+descripcion+"</descripcion>\n"+
+                "   </plato>";
+    }
 }
