@@ -22,12 +22,12 @@ public class Main {
 
         // Test updating number of pages
         int paginasImprimir = 6;
-        int totalPaginas = impresora.actualizarNPaginas(paginasImprimir);
+        int totalPaginas = impresora.imprimirNPaginas(paginasImprimir);
         System.out.println("Total de páginas después de imprimir " + paginasImprimir + " caras: " + totalPaginas); // Expected: 3
 
         // Test single-sided printing
         Impresora impresoraSimple = new Impresora(false, 50, 0); // No doble cara
-        totalPaginas = impresoraSimple.actualizarNPaginas(paginasImprimir);
+        totalPaginas = impresoraSimple.imprimirNPaginas(paginasImprimir);
         System.out.println("Total de páginas después de imprimir " + paginasImprimir + " caras en impresora simple: " + totalPaginas); // Expected: 6
     }
 }

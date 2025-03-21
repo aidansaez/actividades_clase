@@ -23,9 +23,9 @@ public class Impresora {
         }
     }
 
-    public int actualizarNPaginas(int paginasImprimir) {
+    public int imprimirNPaginas(int paginasImprimir) {
         if (dobleCara) {
-            NPaginas += paginasImprimir * 2;
+            NPaginas = NPaginas / 2;
         } else {
             NPaginas += paginasImprimir;
         }
@@ -43,4 +43,6 @@ public class Impresora {
     public int getNiveldeToner() {
         return niveldeToner;
     }
+
+
 }
