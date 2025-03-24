@@ -10,7 +10,7 @@ public class Color {
             return "rojo";
         } else if (nombre.charAt(0) >= 'G' && nombre.charAt(0) <= 'M') {
             return "verde";
-        } else if (nombre.charAt(0) >= 'N' && nombre.charAt(0) <= 'S') {
+        } else if (nombre.charAt(0) >= 'N' && nombre.charAt(0) <= 'S' || nombre.charAt(0) == 'Ñ') {
             return "azul";
         } else return "amarillo";
     }
