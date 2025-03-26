@@ -1,4 +1,4 @@
-package JUnit.actividad1.ejercicio1;
+package JUnit.ejercicio1;
 
 public class Impresora {
     protected int niveldeToner;

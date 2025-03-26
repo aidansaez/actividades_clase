@@ -1,4 +1,4 @@
-package JUnit.actividad1.ejercicio3;
+package JUnit.ejercicio3;
 
 import org.junit.jupiter.api.Test;
 

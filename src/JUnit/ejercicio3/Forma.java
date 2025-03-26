@@ -1,4 +1,4 @@
-package JUnit.actividad1.ejercicio3;
+package JUnit.ejercicio3;
 
 public class Forma {
     protected String nombre;

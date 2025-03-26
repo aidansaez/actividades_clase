@@ -1,4 +1,4 @@
-package JUnit.actividad1.ejercicio2;
+package JUnit.ejercicio2;
 
 public class Color {
     protected String nombre;
