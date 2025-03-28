@@ -3,22 +3,33 @@ package Ficheros;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class act9 {
     public static void main(String[] args) {
         File f = new File("C:/ficheros/empleados.bin");
-        Empleado e1 = new Empleado("12345678Y", "Maria", 23, 2100);
-        Empleado e2 = new Empleado("87654321P", "Pedro", 18, 1000);
-        Empleado e3 = new Empleado("1111111U", "Juanito", 45, 3500);
-        Empleado e4 = new Empleado("2222222J", "Koko", 34, 1999);
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Empleado> empleados = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            System.out.print("DNI: ");
+            String dni = sc.nextLine();
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Edad: ");
+            int edad = sc.nextInt();
+            System.out.print("Sueldo: ");
+            int sueldo = sc.nextInt();
+            sc.nextLine();
+            empleados.add(new Empleado(dni, nombre, edad, sueldo));
+        }
 
         try {
             FileOutputStream fos = new FileOutputStream(f);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(e1);
-            oos.writeObject(e2);
-            oos.writeObject(e3);
-            oos.writeObject(e4);
+            for (Empleado e : empleados) {
+                oos.writeObject(e);
+            }
             fos.close();
             oos.close();
             System.out.println("Añadidos con éxito");
