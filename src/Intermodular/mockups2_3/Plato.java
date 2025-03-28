@@ -1,6 +1,11 @@
 package Intermodular.mockups2_3;
 
+import java.io.File;
+import java.io.PrintWriter;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Plato {
     private String idplato;
@@ -80,14 +85,43 @@ public class Plato {
         return Objects.hash(idplato, nombre, tipo, precio, descripcion);
     }
 
-    public String toXML() {
-        return
-                "   <plato>\n" +
-                "       <idplato>" + idplato + "</idplato>\n" +
-                "       <nombre>"+nombre+"</nombre>\n" +
-                "       <tipo>"+tipo+"</tipo>\n" +
-                "       <precio>"+precio+"</precio>\n" +
-                "       <descripcion>"+descripcion+"</descripcion>\n"+
-                "   </plato>";
+    public static String toXML(ArrayList<Plato> platos, int num) {
+        Class<?> c;
+        c = platos.get(0).getClass();
+        String r = "";
+        String plato = c.getSimpleName().toLowerCase();
+        if (num > 1) r += "<" + plato + "s>";
+        for (Object o : platos) {
+            if (num != 0) {
+                r += "\n    <" + c.getSimpleName().toLowerCase() + ">";
+                try {
+                    for (int i = 0; i < c.getDeclaredFields().length; i++) {
+                        Field name = c.getDeclaredFields()[i];
+                        name.setAccessible(true);
+                        r += "\n      <" + name.getName() + ">" + name.get(o) + "</" + name.getName() + ">";
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+                r += "\n    </" + plato + ">";
+            }
+        }
+        if (num > 1) r += "\n</" + plato + "s>";
+        return r;
+    }
+
+    public static void toFileXML(String xml) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre del fichero (xml): ");
+        File f = new File("C:/ficheros/" + sc.nextLine() + ".xml");
+
+        try {
+            PrintWriter pw = new PrintWriter(f);
+            pw.println(xml);
+            System.out.println(xml);
+            pw.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

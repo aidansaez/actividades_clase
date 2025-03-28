@@ -272,7 +272,8 @@ public class Main {
                 4. 🔎 Consultar plato
                 5. 🍽️ Imprimir lista de platos
                 6. 🗂️ Generar XML
-                7. 💨 Salir
+                7. 🗂️ Archivo XML
+                8. 💨 Salir
                 """);
     }
 
@@ -285,11 +286,8 @@ public class Main {
             do {
                 System.out.print("Elige una opción: ");
                 opc = sc.nextInt();
-
-                if (opc < 0 || opc > 7) {
-                    System.out.println("Error, esa opción no existe");
-                }
-            } while (opc < 0 || opc > 7);
+                sc.nextLine();
+            } while (opc < 0 || opc > 8);
 
             switch (opc) {
                 case 0:
@@ -311,14 +309,14 @@ public class Main {
                     printPlatos();
                     break;
                 case 6:
-                    System.out.println("<platos>");
-                    for (Plato p : platos) {
-                        System.out.println(p.toXML());
-                    }
-                    System.out.println("</platos>");
+                    System.out.println(Plato.toXML(platos, platos.size()));
                     break;
                 case 7:
-
+                    Plato.toFileXML(Plato.toXML(platos, platos.size()));
+                    break;
+                case 8:
+                    seguir = false;
+                    break;
                 default:
                     System.out.println("Error, opción no válida");
             }
