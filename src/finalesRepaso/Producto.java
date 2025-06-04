@@ -13,15 +13,24 @@ public class Producto {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecio(double nuevoPrecio) {
+        this.precio = nuevoPrecio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Producto)) return false;
+        Producto p = (Producto) o;
+        return nombre.equalsIgnoreCase(p.nombre);
+    }
+
+    @Override
+    public int hashCode() {
+        return nombre.toLowerCase().hashCode();
     }
 }
